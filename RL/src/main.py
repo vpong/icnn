@@ -64,13 +64,14 @@ class Experiment(object):
 
             # test
             reward_list = []
-            for _ in xrange(FLAGS.test):
+            for _ in range(FLAGS.test):
                 reward, timestep = self.run_episode(test=True, monitor=np.random.rand() < FLAGS.monitor)
                 reward_list.append(reward)
                 self.test_timestep += timestep
             avg_reward = np.mean(reward_list)
             print('Average test return {} after {} timestep of training.'.format(avg_reward, self.train_timestep))
-            print >> simple_log_file, "{}\t{}".format(self.train_timestep, avg_reward)
+            print("{}\t{}".format(self.train_timestep, avg_reward),
+                  file=simple_log_file)
 
             # train
             reward_list = []

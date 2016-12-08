@@ -161,6 +161,8 @@ class Agent:
         act = np.ones((obs.shape[0], self.dimA)) * 0.5
         def fg(x):
             value, grad = func(obs, 2 * x - 1)
+            print(value.shape)
+            print(grad.shape)
             grad *= 2
             return value, grad
 
@@ -182,7 +184,7 @@ class Agent:
         b2t = 1
         act_best = None
         f_best = None
-        for i in xrange(50):
+        for i in range(50):
             f, g = func(obs, act)
             if i == 0:
                 act_best = act.copy()
@@ -228,7 +230,7 @@ class Agent:
             self.rm.enqueue(obs1, term, self.action, rew)
 
             if self.t > FLAGS.warmup:
-                for i in xrange(FLAGS.iter):
+                for i in range(FLAGS.iter):
                     loss = self.train()
 
     def train(self):

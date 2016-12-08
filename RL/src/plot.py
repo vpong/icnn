@@ -11,9 +11,9 @@ flags.DEFINE_float('min', 0, 'y axis min')
 flags.DEFINE_float('max', 1, 'y axis max')
 
 folders = [
-    [FLAGS.data + '/DDPG/%d' % i for i in xrange(FLAGS.runs)],
-    [FLAGS.data + '/NAF/%d' % i for i in xrange(FLAGS.runs)],
-    [FLAGS.data + '/ICNN/%d' % i for i in xrange(FLAGS.runs)],
+    [FLAGS.data + '/DDPG/%d' % i for i in range(FLAGS.runs)],
+    [FLAGS.data + '/NAF/%d' % i for i in range(FLAGS.runs)],
+    [FLAGS.data + '/ICNN/%d' % i for i in range(FLAGS.runs)],
 ]
 names = [
     'DDPG',
@@ -39,7 +39,7 @@ plt.ylabel('Reward')
 
 import os
 def get_data(folders, n=100, k=100):
-    X = [i * k for i in xrange(n)]
+    X = [i * k for i in range(n)]
     Y = []
     for folder in folders:
         with open(os.path.join(folder, 'log.txt')) as f:
@@ -58,7 +58,7 @@ def get_data(folders, n=100, k=100):
             if idx >= n:
                 break
             z[idx] = v
-        for i in xrange(n):
+        for i in range(n):
             if z[i] < -1e7:
                 z[i] = z[i - 1]
 
